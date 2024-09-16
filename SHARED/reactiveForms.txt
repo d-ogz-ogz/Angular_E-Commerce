@@ -1,0 +1,153 @@
+﻿
+export class LoginComponent implements OnInit {
+
+  // set the currenr year
+  year: number = new Date().getFullYear();
+  // Carousel navigation arrow show
+  showNavigationArrows: any;
+  loginForm!: FormGroup;
+  submitted = false;
+  error = '';
+  returnUrl!: string;
+  layout_mode!: string;
+  fieldTextType!: boolean;
+
+  constructor(private formBuilder: FormBuilder,
+    private route: ActivatedRoute,
+    private router: Router,
+    private authenticationService: AuthenticationService,
+    private authFackservice: AuthfakeauthenticationService,
+    private login: LoginService,
+  ) {
+
+    if (this.authenticationService.currentUserValue) {
+      this.router.navigate(['/']);
+    }
+  }
+
+  ngOnInit(): void {
+    this.layout_mode = LAYOUT_MODE
+    if (this.layout_mode === 'dark') {
+      document.body.setAttribute("data-layout-mode", "dark");
+    }
+
+    this.loginForm = this.formBuilder.group({
+      email: ['test@test.com', [Validators.required, Validators.email]],
+      password: ['123456', [Validators.required]],
+    });
+
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+    document.body.setAttribute('data-layout', 'vertical');
+  }
+
+  get f() { return this.loginForm.controls; }
+
+  onSubmit() {
+    this.submitted = true;
+
+    if (this.loginForm.invalid) {
+      return;
+    } else {
+      this.login.Login(this.f.email.value, this.f.password.value).subscribe(a => {
+        localStorage.setItem('jwt', a.token);
+        localStorage.setItem('company', a.company);
+        localStorage.setItem('user', JSON.stringify(a.user));
+        this.router.navigateByUrl('/');
+      }, error => {
+        this.f.password.setErrors({wrong: undefined});
+        this.f.email.setErrors({wrong: undefined});
+      });
+    }
+  }
+  toggleFieldTextType() {
+    this.fieldTextType = !this.fieldTextType;
+  }
+}
+
+
+
+
+
+  year: number = new Date().getFullYear();
+  //SERVICE//
+
+@Injectable({
+  providedIn: 'root'
+})
+export class LoginService {
+  constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string) { }
+
+  public Login(user:string, password:any): Observable<any> {
+    return this.http.post<any>(this.baseUrl + 'login', { user, password });
+  }
+}
+
+
+-----------------------------------------------------------------------------------------------------------------
+
+//SUBMIT// (login == login service)
+
+  onSubmit() {
+    this.submitted = true;
+    if (this.loginForm.invalid) {
+      return;
+    } else {
+      this.login.Login(this.f.email.value, this.f.password.value).subscribe(a => {
+        localStorage.setItem('jwt', a.token);
+        localStorage.setItem('company', a.company);
+        localStorage.setItem('user', JSON.stringify(a.user));
+        this.router.navigateByUrl('/');
+      }, error => {
+        this.f.password.setErrors({wrong: undefined});
+        this.f.email.setErrors({wrong: undefined});
+      });
+    }
+  }
+
+
+  -----------------------------------------------------------------------
+
+  import { Component, OnInit, VERSION } from '@angular/core';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+
+@Component({
+  selector: 'my-app',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css'],
+})
+export class AppComponent implements OnInit {
+  public title: string = `Angular ${VERSION.major} form usage`;
+  public username: string = 'user';
+  public email: string;
+  public password: string;
+  public form: FormGroup;
+
+  constructor(private formBuilder: FormBuilder) {}
+
+  public ngOnInit(): void {
+    this.form = this.createForm();
+  }
+
+  public submitVariables(): void {
+    console.log({
+      username: this.username,
+      email: this.email,
+      password: this.password,
+    });
+  }
+
+  public submitForm(): void {
+    console.log(this.form.value);
+  }
+
+  private createForm(): FormGroup {
+    return this.formBuilder.group({
+      username: this.formBuilder.control('user'),
+      email: this.formBuilder.control(''),
+      password: this.formBuilder.control('', [
+        Validators.required,
+        Validators.minLength(4),
+      ]),
+    });
+  }
+}

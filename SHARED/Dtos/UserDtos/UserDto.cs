@@ -1,0 +1,31 @@
+﻿using SHARED.DbModels.AdressModels;
+using SHARED.DbModels.OrderModels;
+using SHARED.Dtos.OrderDtos;
+using SHARED.Dtos.UserDtos;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace SHARED.UserDtos
+{
+    public class UserDto
+    {
+        public int Id { get; set; }
+        public string? FirstName { get; set; }
+        public string? LastName { get; set; }
+        public string? UserName { get; set; }
+        public string? Email { get; set; }
+        public string? Gender { get; set; }
+        public string? Password { get; set; }
+        public bool Customer_allow { get; set; }
+        public bool Customer_inform{ get; set; }
+        public virtual ICollection<CommentDto>? Comments { get; set; }
+        public virtual ICollection<OrderDto>? Order { get; set; }
+        public virtual PaymentDetailsDto? PaymentDetails { get; set; }
+        public virtual Address? Address { get; set; }
+
+
+    }
+}
