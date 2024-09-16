@@ -1,0 +1,22 @@
+.container {
+  max-width: 960px;
+  margin-bottom: 60px;
+}
+
+body,.sub container {
+  background-image: url('https://www.contractordays.be/wp-content/uploads/2020/01/AdobeStock_118823349.jpg');
+  padding-bottom: 20px;
+}
+
+.navbar {
+  margin-bottom: 20px;
+}
+
+main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+textarea{
+    resize:none;
+}

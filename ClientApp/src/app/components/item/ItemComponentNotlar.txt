@@ -1,0 +1,34 @@
+
+
+get pageNumbers=[]
+pageNumbers(): number[]{
+ return  Array(
+    Math.ceil(this.http.getItems(this.selectedCategory).length / this.productsPerPage)).fill(0).map((a, i) => i+1)
+
+}
+
+changePage(p: number){
+  this.selectedPage = p;
+}
+
+asenkron işlemleri constructor içinde yaz.
+
+
+ /////seçilen ürün active sınıfının eklenmesl
+
+selectedProduct: string;
+
+getSelected(item: Item):boolean{
+  return item.name == this.selectedProduct;
+}
+
+  getItems(): Item[] {
+
+    let index = (this.selectedPage - 1) * this.productsPerPage;
+    return this.Items.slice(index,index + this.productsPerPage) ;
+
+
+  }
+    getSubCategories() {
+    return this.itemService.getSubCategories().then(c => { this.subCategories = c as SubCategory[] });
+  }

@@ -1,0 +1,95 @@
+<html>
+<head>
+  <title>Payment</title>
+</head>
+<body>
+  <form [formGroup]="paymentForm" (ngSubmit)="onSubmit()">
+    <div class="container">
+      <div class="row mt-5">
+        <div class="col-6 fs-5">
+          <div class="mb-2">
+            <label for="name" class="form-label">Name on card</label>
+            <input type="text" class="form-control" id="name" placeholder="Full name as displayed on card" required formControlName="name">
+            <ng-container class="mb-1" *ngIf="paymentForm.get('name')?.dirty && paymentForm.get('name')?.touched && paymentForm.get('name')?.errors">
+              <div class="alert alert-danger" *ngIf="paymentForm.get('name')?.errors?.['required']">
+                Name on Card is required.
+              </div>
+              <div class="alert alert-danger" *ngIf="paymentForm.get('name')?.errors?.['minlength']">
+                Name on Card must contain 3 character at least
+              </div>
+            </ng-container>
+          </div>
+          <div>
+          </div>
+          <div class="mb-2">
+            <label for="cardNumber" class="form-label">Credit card number</label>
+            <input type="text" class="form-control" id="cardNumber" placeholder="" required formControlName="cardNumber">
+            <ng-container class="mb-1" *ngIf="paymentForm.get('cardNumber')?.dirty && paymentForm.get('cardNumber')?.touched && paymentForm.get('cardNumber')?.errors">
+              <div class="alert alert-danger" *ngIf="paymentForm.get('cardNumber')?.errors?.['required']">
+                Credit Card Number is required.
+              </div>
+              <div class="alert alert-danger" *ngIf="paymentForm.get('cardNumber')?.errors?.['minlength']">
+                Credit Card Number must be 16 character
+              </div>
+              <div class="alert alert-danger" *ngIf="paymentForm.get('cardNumber')?.errors?.['maxlength']">
+                Credit Card Number must be 16 character
+              </div>
+            </ng-container>
+          </div>
+          <div class="row mb-2">
+            <div class="col-6 ">
+              <label for="expiration" class="form-label">Expiration</label>
+              <input type="text" class="form-control" id="expiration" placeholder="" required formControlName="expiration">
+              <ng-container class="mb-1" *ngIf="paymentForm.get('expiration')?.dirty && paymentForm.get('expiration')?.touched && paymentForm.get('expiration')?.errors">
+                <div class="alert alert-danger" *ngIf="paymentForm.get('expiration')?.errors?.['required']">
+                  Expiration Date required.
+                </div>
+                <div class="alert alert-danger" *ngIf="paymentForm.get('expiration')?.errors?.['pattern']">
+                  Expiration Date must be DD/MM format.
+                </div>
+              </ng-container>
+            </div>
+            <div class="col-6">
+              <label for="securityCode" class="form-label">CVV</label>
+              <input type="text" class="form-control" id="securityCode" placeholder="" required formControlName="securityCode">
+              <ng-container class="mb-1" *ngIf="paymentForm.get('securityCode')?.dirty && paymentForm.get('securityCode')?.touched && paymentForm.get('securityCode')?.errors">
+                <div class="alert alert-danger" *ngIf="paymentForm.get('securityCode')?.errors?.['required']">
+                  Security code is required.
+                </div>
+                <div class="alert alert-danger" *ngIf="paymentForm.get('securityCode')?.errors?.['minlength']">
+                  Your Security Code must contain 3 character
+                </div>
+                <div class="alert alert-danger" *ngIf="paymentForm.get('securityCode')?.errors?.['maxlength']">
+                  Your Security Code must contain 3 character
+                </div>
+              </ng-container>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 my-auto">
+          <img src="https://usa.visa.com/dam/VCOM/regional/na/canada/pay-with-visa/cards/credit/visa-infinite-400x225.jpg" />
+        </div>
+
+
+
+      </div>
+    </div>
+    <button class="btn btn-outline-success  btn-lg float-end mt-3" [disabled]="paymentForm.invalid" type="submit">Sign Up</button>
+    <button class="btn btn-outline-warning  btn-lg float-end mt-3" (click)="resetForm()" type="button">Clear All</button>
+    <button class="btn btn-outline-warning  btn-lg float-end mt-3" routerLink="/afterPurchase" type="button">Pay</button>
+  </form>
+</body>
+</html>
+<!--<h6 class="mb-3"> Please choose your payment method</h6>-->
+<!--<div class="form-check mb-1">
+  <input id="credit" name="paymentMethod" type="radio" class="form-check-input" checked required>
+  <label class="form-check-label" for="credit">Credit card</label>
+</div>
+<div class="form-check mb-1">
+  <input id="debit" name="paymentMethod" type="radio" class="form-check-input" required>
+  <label class="form-check-label" for="debit">Debit card</label>
+</div>
+<div class="form-check mb-1">
+  <input id="paypal" name="paymentMethod" type="radio" class="form-check-input" required>
+  <label class="form-check-label" for="paypal">PayPal</label>
+</div>-->

@@ -1,0 +1,56 @@
+
+<body class="text-center">
+
+  <main class="form-signin container">
+    <form [formGroup]="validationForm" (ngSubmit)="submitForm()">
+      <h1 class="h3 mb-3 fw-normal">COUNTDOWN</h1>
+      <div class="form-floating">
+        <input type="text" class="form-control" id="codeBlock" disabled value="CODE" >
+      </div>
+      <div class="form-floating">
+        <input type="password" class="form-control" id="code" placeholder="enter code have been sent on your email" name="code" formControlName="code">
+        <label class="text-center" for="code"></label>
+      </div>
+
+      <button class=" w-100 btn btn-success  btn-lg " [disabled]="validationForm.invalid" type="submit" href="">Sign In</button>
+    </form>
+    <div>
+      <input style="background-color:aquamarine" value="old_value" id="sayac"/>
+    </div>
+    <button id="clickme">CLICK ME</button>
+  </main>
+
+
+  <script>
+    $(document).ready(
+      function () {
+     //var saat = 12;
+     //var dakika = 0;
+     //var saniye = 0;
+     //var sayac = setInterval(function(){
+     //       if(dakika == 0 && saniye == 0){
+     //           saat--;
+     //           saniye = 60;
+     //           dakika = 60;
+     //       }
+     //       if (dakika != 0 && saniye == 0) {
+     //           dakika--;
+     //           saniye = 60;
+     //       }
+     //       if (saniye != 0) {
+     //           saniye--;
+     //       }
+     //       if(saniye == 0 && dakika == 0 && saat == 0){
+     //           clearInterval(sayac);
+     //       }
+     //       $("#sayac").val(saat+":"+dakika+":"+saniye)
+        //},1000)
+        $("#clickme").click(function () {
+          $("#sayac").val("new value")
+        })
+     
+
+ })
+  </script>
+</body>
+

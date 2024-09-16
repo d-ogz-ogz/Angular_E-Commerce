@@ -1,0 +1,102 @@
+
+<div class="modal-dialog modal-xl">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"> X </button>
+    </div>
+    <div class="modal-body">
+
+      <div>
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="card" style="width:100%;">
+                <img src="assets/img/{{this.itemService.selectedItem?.id}}.jpg" class="card-img-top" alt="..." width="350px" height="500px" >
+
+              </div>
+            </div>
+            <div class="col-md-6">
+
+              <div class="d-flex flex-column justify-content-center align-items-center">
+                <div>
+                  <div class="text-center">  {{this.itemService.selectedItem?.name}} </div>
+                  <p class="text-center">
+                    {{this.itemService.selectedItem?.description}}  IT WORKS |||| it amet ac nunc fusce iaculis lorem eu diam hendrerit at mattis purus dignissim vivamus mauris tellus, fringilla vel dapibus a, blandit quis erat vivamus elementum aliquam luctus etiam fringilla pretium sem vitae sodales mauris id nulla est praesent laoreet, metus vel auctor aliquam, eros purus vulputate leo, eget consequat neque quam id tellus duis ultricies tempor tortor, vitae dignissim ligula mattis nec in hac habitasse platea dictumst.
+                  </p>
+
+                  <div>
+                    <div class="text-center mb-3"> MENU SELECTION </div>
+                    <hr />
+                    <form [formGroup]="menuForm">
+                      <div>
+                        <div class="container">
+                          <div class="row ">
+                            <div class="d-flex  align-items-center justify-content-center">
+                              <div class="col-md-6">
+                                   <div class="d-flex flex-column align-items-center justify-content-center">
+                                    <p class="text-center">Select Menu Size</p>
+                                    <input type="radio" class="btn-check" value="normal" formControlName="sizeSel" id="option5" >
+                                    <label class="btn" for="option5">Normal</label>
+                                    <input type="radio" class="btn-check" value="large" formControlName="sizeSel" id="option6" >
+                                    <label class="btn" for="option6">Large</label>
+                                    <input type="radio" class="btn-check" value="xlarge" formControlName="sizeSel" id="option7" >
+                                    <label class="btn" for="option7">XLarge</label>
+
+
+                                  </div>
+
+                              </div>
+                              <div class="col-md-6">
+                                <p class="text-center">Select Beverage</p>
+                                <select formControlName="beverageSel" [value]='itemService.selectedItem! ? itemService.selectedItem.beverage : "" ' class="form-select form-select-lg mb-3" aria-label="Large select example">
+                                  <option selected value=""><span class="text-muted"> Please Choose </span> </option>
+                                  <option value="Cola">Cola</option>
+                                  <option value="Ice Tea">Ice Tea</option>
+                                  <option value="Lemonade">Lemonade</option>
+                                </select>
+                              </div>
+
+                            </div>
+                          </div>
+                          <div class="form-floating">
+                            <textarea class="form-control" [value]='itemService.selectedItem! ? itemService.selectedItem.orderNotes : "" ' placeholder="Leave your notes here" formControlName="orderNotes" id="floatingTextarea2" style="height: 100px"></textarea>
+                            <label for="floatingTextarea2">Comments</label>
+                            <ng-container *ngIf="menuForm.get('orderNotes')?.dirty && menuForm.get('orderNotes')?.touched && menuForm.get('orderNotes')?.errors">
+                              ,
+                              <div class="alert alert-danger" *ngIf="menuForm.get('orderNotes')?.errors?.['maxlength']">
+                                Note must be 50 characters max
+                              </div>
+
+
+
+                            </ng-container>
+                          </div>
+                        </div>
+                        <button type="btn" class="btn btn-lg btn-success float-end mt-3" (click)="edit(this.itemService.selectedItem!)">Save Changes</button>
+
+                      </div>
+                    </form>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+
+        </div>
+
+
+
+      </div>
+
+      <div class="modal-footer">
+
+
+      </div>
+    </div>
+  </div>
+
+</div>
+

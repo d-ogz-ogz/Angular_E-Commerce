@@ -1,0 +1,11 @@
+*{
+    font-weight:bolder
+}
+.container {
+  max-width: 960px;
+
+}
+body {
+  background: url(https://img.freepik.com/premium-photo/blurred-business-people-trade-fair_157125-19140.jpg?w=2000);
+  background-size: cover;
+}

@@ -1,0 +1,172 @@
+
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Home</title>
+</head>
+
+<div class="header ">
+  <p style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif ; font-size:50px; opacity:0.7;" class=" text-center ">
+    ARE YOU HUNGRY?<br />
+    LET'S LOOK AT OUR   <span style="opacity:1.0;" class="text-danger">OFFERS </span>
+  </p>
+</div>
+<div class="row">
+  <div class="sol">
+
+    <div id="carouselExampleCaptions" class="carousel slide">
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+      </div>
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="https://img.theculturetrip.com/wp-content/uploads/2018/08/shutterstock_427193734.jpg" class="d-block w-100" alt="...">
+          <div class="carousel-caption d-none d-md-block">
+            <h2>WE ARE HERE</h2>
+            <p class="fw-bold text-success" style="font-size:40px;"> On healthy and Delicious Meals</p>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="https://media.istockphoto.com/id/1181396290/photo/people-laughing-at-dinner-table.jpg?s=612x612&w=0&k=20&c=6Vyn5ppOp9fLqOeVKL9KCWfNYS69_SchgiOyviVAVuM=" class="d-block w-100" alt="...">
+          <div class="carousel-caption d-none d-md-block">
+            <h2>WE ARE HERE</h2>
+            <p class="fw-bold text-danger" style="font-size:40px;"> An enjoyable meeting with the gang</p>
+
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="https://dads4kids.org.au/wp-content/uploads/2018/08/306.jpg" class="d-block w-100" alt="...">
+          <div class="carousel-caption d-none d-md-block">
+            <h2>WE ARE HERE</h2>
+            <p class="fw-bold text-info" style="font-size:40px;">A Family meeting on the Monday Morning</p>
+
+          </div>
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+
+    <div class="album py-5 bg-body-tertiary ">
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        <div class="col" *ngFor="let item of randomItems">
+          <div class="card ">
+            <a>
+              <img class="bd-placeholder-img card-img-top p-3" style="cursor:pointer" src="assets/img/{{item.id}}.jpg" width="100%" height="300" />
+            </a>
+            <div class="card-body">
+              <h5 class="card-title text-center mt-3">{{item.name}} </h5>
+              <p class="card-text text-center"> DESCRIPTION</p>
+              <p class="card-text text-center text-danger fw-bold">{{item.price | currency }} </p>
+              <div class="d-flex justify-content-center align-items-center" id="button-gr">
+
+                <button type="button" class="btn btn-sm btn-outline-success" data-bs-toggle="modal" (click)="displayDetails(item)" data-bs-target="#exampleModal">
+                  See More
+                </button>
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+  <div class="sağ">
+    <div class="card ">
+      <a>
+        <img class="bd-placeholder-img card-img-top p-3" style="cursor:pointer" src="assets/img/{{favouriteItem?.id}}.jpg" width="100%" height="300" />
+      </a>
+      <div class="card-body">
+        <h5 class="card-title text-center mt-3">{{favouriteItem?.name}} </h5>
+        <p class="card-text text-center"> DESCRIPTION</p>
+        <p class="card-text text-center text-danger fw-bold">{{favouriteItem?.price | currency }} </p>
+        <div class="d-flex justify-content-center align-items-center" id="button-gr">
+
+          <button type="button" class="btn btn-sm btn-outline-success" data-bs-toggle="modal" (click)="displayDetails(favouriteItem)" data-bs-target="#exampleModal">
+            See More
+          </button>
+
+        </div>
+      </div>
+
+    </div>
+    <div class="news">
+      <h3 class="text-danger fw-bold mt-3">Thought you'd like it :)</h3>
+      <hr />
+      <br />
+      <div class="card-body">
+        <h5 class="new fw-semibold">
+          DISCOUNT ON DOUBLE CHEESE BURGER MENU
+        </h5>
+
+      </div>
+      <div class="card-body fw-semibold ">
+        <h5 class="new fw-semibold p-3 ">
+          DID YOU SEE THE QUEEN OF DESERTS?
+        </h5>
+
+      </div>
+      <div class="card-body ">
+        <h5 class="new fw-semibold ">
+          LET'S TRY THE MUSHROOM PIZZA
+        </h5>
+
+      </div>
+    </div>
+    <br />
+    <hr />
+    <br />
+    <div class="card">
+      <h3>Follow Us</h3>
+      <hr />
+      <div class="d-flex align-items-center justify-content-center ms-5 flex-column">
+        <a href="#" style="text-decoration:none;color:black">
+          <p class="fw-bold">
+            <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="40" height="40" viewBox="0 0 50 50">
+              <path d="M 9 4 C 6.2504839 4 4 6.2504839 4 9 L 4 41 C 4 43.749516 6.2504839 46 9 46 L 25.832031 46 A 1.0001 1.0001 0 0 0 26.158203 46 L 31.832031 46 A 1.0001 1.0001 0 0 0 32.158203 46 L 41 46 C 43.749516 46 46 43.749516 46 41 L 46 9 C 46 6.2504839 43.749516 4 41 4 L 9 4 z M 9 6 L 41 6 C 42.668484 6 44 7.3315161 44 9 L 44 41 C 44 42.668484 42.668484 44 41 44 L 33 44 L 33 30 L 36.820312 30 L 38.220703 23 L 33 23 L 33 21 C 33 20.442508 33.05305 20.398929 33.240234 20.277344 C 33.427419 20.155758 34.005822 20 35 20 L 38 20 L 38 14.369141 L 37.429688 14.097656 C 37.429688 14.097656 35.132647 13 32 13 C 29.75 13 27.901588 13.896453 26.71875 15.375 C 25.535912 16.853547 25 18.833333 25 21 L 25 23 L 22 23 L 22 30 L 25 30 L 25 44 L 9 44 C 7.3315161 44 6 42.668484 6 41 L 6 9 C 6 7.3315161 7.3315161 6 9 6 z M 32 15 C 34.079062 15 35.38736 15.458455 36 15.701172 L 36 18 L 35 18 C 33.849178 18 32.926956 18.0952 32.150391 18.599609 C 31.373826 19.104024 31 20.061492 31 21 L 31 25 L 35.779297 25 L 35.179688 28 L 31 28 L 31 44 L 27 44 L 27 28 L 24 28 L 24 25 L 27 25 L 27 21 C 27 19.166667 27.464088 17.646453 28.28125 16.625 C 29.098412 15.603547 30.25 15 32 15 z"></path>
+            </svg> _FacebookAccount
+          </p>
+        </a>
+        <a href="#" style="text-decoration:none;color:black">
+          <p class="fw-bold">
+            <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="40" height="40" viewBox="0 0 50 50">
+              <path d="M41,4H9C6.24,4,4,6.24,4,9v32c0,2.76,2.24,5,5,5h32c2.76,0,5-2.24,5-5V9C46,6.24,43.76,4,41,4z M17,20v19h-6V20H17z M11,14.47c0-1.4,1.2-2.47,3-2.47s2.93,1.07,3,2.47c0,1.4-1.12,2.53-3,2.53C12.2,17,11,15.87,11,14.47z M39,39h-6c0,0,0-9.26,0-10 c0-2-1-4-3.5-4.04h-0.08C27,24.96,26,27.02,26,29c0,0.91,0,10,0,10h-6V20h6v2.56c0,0,1.93-2.56,5.81-2.56 c3.97,0,7.19,2.73,7.19,8.26V39z"></path>
+            </svg> _LinkedinAccount
+          </p>
+        </a>
+        <a href="#" style="text-decoration:none;color:black">
+          <p class="fw-bold">
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z" /></svg>
+            _TwitterAccount
+          </p>
+        </a>
+
+      </div>
+      <hr />
+    </div>
+  </div>
+
+
+</div>
+
+
+
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <app-details> </app-details> 
+</div>
+

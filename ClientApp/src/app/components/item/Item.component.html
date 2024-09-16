@@ -1,0 +1,223 @@
+
+<html>
+<head>
+
+  <title>Item List</title>
+  <style>
+    .bd-placeholder-img {
+      font-size: 1.125rem;
+      text-anchor: middle;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      user-select: none;
+    }
+
+    @media (min-width: 768px) {
+      .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+      }
+    }
+
+    .b-example-divider {
+      height: 3rem;
+      border: solid rgba(0, 0, 0, .15);
+      border-width: 1px 0;
+      box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+    }
+
+    .b-example-vr {
+      flex-shrink: 0;
+      width: 1.5rem;
+      height: 100vh;
+    }
+
+    .bi {
+      vertical-align: -.125em;
+      fill: currentColor;
+    }
+
+    .nav-scroller {
+      position: relative;
+      z-index: 2;
+      height: 2.75rem;
+      overflow-y: hidden;
+    }
+
+      .nav-scroller .nav {
+        display: flex;
+        flex-wrap: nowrap;
+        padding-bottom: 1rem;
+        margin-top: -1px;
+        overflow-x: auto;
+        text-align: center;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+      }
+  </style>
+
+
+</head>
+<body>
+
+  <main>
+    <div>
+      <div>
+        <div class="container-fluid " *ngIf="selectedCategory ; else elseBlock">
+          <div class="col-md-12 d-flex justify-content-center align-items-center " style="height: 200px; background: url(assets/Categories/{{selectedCategory.id}}.jpg);background-size:auto;background-position-x:center;background-position-y:center;background-repeat:no-repeat">
+            <div>
+              <h1 style="text-shadow:8px 2px 2px gray;color:floralwhite"> {{selectedCategory.name | uppercase }} </h1>
+            </div>
+          </div>
+        </div>
+        <ng-template #elseBlock>
+          <div class="col-md-12 d-flex justify-content-center align-items-center " style="height: 200px; background: url(assets/Categories/main.jpg);background-size:auto;">
+            <div>
+              <h1 class="bannerDiv" style="text-shadow:8px 2px 2px gray;color:floralwhite"> BANNER   </h1>
+            </div>
+          </div>
+        </ng-template>
+
+      </div>
+      <div class="col-md-12 text-center fs-3 mt-3">
+        <div class="alert-alert-warning fw-bold mb-3">
+
+
+          <span> <span class="text-danger"> {{Items?Items?.length || " Ürün Bulunmamaktadır":"" }} </span>   <span *ngIf="Items?.length!=0">ürün gösterilmektedir. </span> </span>
+        </div>
+      </div>
+      <div class="row bg-light">
+        <div class="col-3  text-center container mt-5 ">
+          <!--// KATEGORİ VE KATEGORİYE GÖRE ÜRÜN GETİRME-->
+
+          <div class="list-group">
+            <h1>{{categoryService.selectedCategory?.categoryName}}</h1>
+            <div> <app-Cart-summary> </app-Cart-summary></div>
+
+            <div *ngFor="let cat of subCategories">
+              <a class="list-group-item list-group-item-action" style="cursor:pointer" (click)="changeCategory(cat)" [class.active]="cat==selectedCategory"> <span> {{cat.name}} </span> </a>
+
+              <!---->
+            </div>
+          </div>
+
+        </div>
+        <div class="col-9">
+          <div class="album py-5 bg-light mx-auto">
+            <div class="container">
+
+              <!--// DETAILS-->
+
+              <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+
+                <div class="col" *ngFor="let item of Items">
+                  <div>
+                  </div>
+                  <div class="card ">
+                    <a>
+                      <img class="bd-placeholder-img card-img-top p-3" style="cursor:pointer" src="assets/img/{{item.id}}.jpg" width="100%" height="300" />
+                    </a>
+                    <div class="card-body">
+                      <h5 class="card-title text-center mt-3">{{item.name}} </h5>
+                      <p class="card-text text-center"> {{item.description}}</p>
+                      <p class="card-text text-center text-danger fw-bold">{{item.price | currency }} </p>
+                      <div class="d-flex justify-content-center align-items-center" id="button-gr">
+
+                        <button type="button" class="btn btn-sm btn-outline-success" data-bs-toggle="modal" (click)="displayDetails(item)" data-bs-target="#exampleModal">
+                          See More
+                        </button>
+                        <button type="button" class="btn btn-sm btn-outline-danger float-end" (click)="removeFromCart(item.id)" *ngIf="item==currentCartItem">Remove From Cart</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--PAGINATION-->
+            <div class="d-flex justify-content-center align-items-center mt-5">
+              <div class="btn-group " *ngIf="Items?.length!=0">
+                <div class="btn-group container d-flex align-items-center justify-content-center">
+                  <button (click)="changePage(selectedPage-1)" [class.disabled]="selectedPage==1" class="btn btn-outline-primary btn-lg">Previous </button>
+                  <div *ngFor="let p of pageList">
+                    <button (click)="changePage(p)" class="btn btn-outline-primary btn-lg">{{p}}</button>
+                  </div>
+                  <button (click)="changePage(selectedPage+1)" [class.disabled]="selectedPage==pageList.length-1" class="btn btn-outline-primary btn-lg">Next </button>
+                </div>
+              </div>
+            </div>
+            <!--PAGINATION END-->
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!--<script src="https://cdn.jsdelivr.net/npm/lazyload@2.0.0-rc.2/lazyload.js"></script>-->
+</body>
+</html>
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <app-details> </app-details>
+
+
+</div>
+
+
+
+
+
+<!--//SEÇİLİ ÜRÜNÜ GÖSTERME
+<div class="bg-info text-white p-2">
+Selected Product : {{selectedProduct || '(None)'}} =selected products varsa göster,yoksa || sonrası değiknenin olmaması durumda gösterilmesini istediğin değeri yaz.
+
+</div>
+
+
+  <div>
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+
+  </thead>
+    <tbody *ngFor="" (mouseover)="selectedProduct=pName.name" (mouseleave)="pName='(None)'" [class.bg-info]="getSelected(item)"  > //Döngüden gelen product name'i selectedProduct! a ata,'üzerine gelinen satırdaki ürün ismini yukarıda göstermeye yarar.
+      <tr>
+        <td> </td>
+        <td> </td>
+        <td> </td>
+      </tr>
+      </tbody>
+
+</table>-->
+<!--<div>
+  <input #pName (keyup.enter)="selectedProduct=pName.value"/>
+  </div>
+</div>-->
+<!-- Modal -->
+<!--// MODAL YAPI
+
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  See More
+</button>-->
+<!-- Modal -->
+<!--<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>-->

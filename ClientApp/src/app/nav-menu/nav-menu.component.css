@@ -1,0 +1,61 @@
+
+  
+
+.dropdown {
+  display: inline-block;
+}
+
+.dropdown-menu {
+  display: none;
+}
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+.dropdown a {
+  display: block;
+  text-decoration: none;
+  padding: 13px 15px;
+  color: black;
+  text-align: center;
+}
+
+.dropdown-menu a:hover {
+  background-color: lightgrey;
+}
+.sideBar a {
+  text-decoration: blink;
+  color:dimgray;
+}
+  .sideBar a:hover {
+    border: 1px dashed grey;
+    border-radius:10px;
+    cursor:pointer;
+  }
+
+.category-menu {
+  display: none;
+}
+.item:hover .category-menu {
+  display:block;
+}
+
+
+.nav-item a{
+    color:dimgray;
+}
+.nav-item a:hover {
+font-size:larger;
+
+}
+form input{
+
+}
+cartItemDiv h5:hover {
+  border:1px solid grey;
+}
+
+.cartItDiv:hover .cartItName {
+  text-decoration: underline;
+}

@@ -1,0 +1,27 @@
+.dropdown-center {
+  display: inline-block;
+}
+
+.dropdown-center-menu {
+  display: none;
+}
+
+.dropdown-center:hover .dropdown-menu {
+  display: block;
+}
+
+.dropdown-center a {
+  display: block;
+  text-decoration: none;
+  padding: 13px 15px;
+  color: black;
+  text-align: center;
+}
+
+.dropdown-menu a:hover {
+  background-color: lightgrey;
+}
+.disBtn {
+  background-color: white;
+  color: black;
+}

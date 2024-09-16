@@ -1,0 +1,83 @@
+
+<html>
+<head>
+  <title>About Us</title>
+</head>
+<body>
+  <main>
+    <div class="container my-5">
+      <div class="bg-body-tertiary p-5 rounded">
+        <div class="col-sm-8 py-5 mx-auto">
+          <h1 class="display-4 mb-5 fw-normal">COMMENT & SUGGESTIONS</h1>
+          <form [formGroup]="commentForm" (ngSubmit)="submitForm()">
+            <div class="mb-3">
+              <label for="email" class="form-label fw-semibold">Email address</label>
+              <input type="email" class="form-control" id="email" formControlName="email" placeholder="useremail@example.com"  >
+              <ng-container *ngIf="commentForm.get('email')?.dirty && commentForm.get('email')?.touched && commentForm.get('email')?.errors">
+                <div class="alert alert-danger" *ngIf="commentForm.get('email')?.errors?.['required']">
+                  Valid Email is required.
+                </div>
+              </ng-container>
+            </div>
+            <div class="mb-3">
+              <label for="senderName" class="form-label fw-semibold">Sender Name</label>
+              <input type="text" class="form-control" id="senderName" formControlName="senderName" placeholder="Name Surname">
+              <ng-container *ngIf="commentForm.get('senderName')?.dirty && commentForm.get('senderName')?.touched && commentForm.get('senderName')?.errors">
+                <div class="alert alert-danger" *ngIf="commentForm.get('senderName')?.errors?.['required']">
+                  Valid Name is required.
+                </div>
+              </ng-container>
+            </div>
+            <div class="mb-3">
+              <label for="contentHeader" class="form-label fw-semibold">Topic</label>
+              <input type="text" class="form-control" id="contentHeader" formControlName="contentHeader">
+              <ng-container *ngIf="commentForm.get('contentHeader')?.dirty && commentForm.get('contentHeader')?.touched && commentForm.get('contentHeader')?.errors">
+                <div class="alert alert-danger" *ngIf="commentForm.get('contentHeader')?.errors?.['required']">
+                  Header is required.
+                </div>
+              </ng-container>
+            </div>
+
+            <div class="mb-3">
+              <label for="content" class="form-label fw-semibold">For Comment and Suggestions</label>
+              <textarea class="form-control" id="content" rows="5" formControlName="content"></textarea>
+              <ng-container *ngIf="commentForm.get('content')?.dirty && commentForm.get('content')?.touched && commentForm.get('email')?.errors">
+                <div class="alert alert-danger" *ngIf="commentForm.get('content')?.errors?.['required']">
+                  Content is required.
+                </div>
+              </ng-container>
+            </div>
+
+            <button class="btn btn-outline-success  btn-lg float-end " type="submit">Send </button>
+
+            <button class="btn btn-outline-warning  btn-lg float-end " onclick="exitAlert()">Cancel</button>
+            <button class="btn btn-outline-danger  btn-lg float-end " (click)="resetForm()">Clear</button>
+
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    function exitAlert() {
+      var alert = window.confirm("Are you sure you want to exit?");
+
+      if (alert) {
+        alert("See you")
+        location="/home"
+      } else {
+        alert("your draft could not be saved")
+      }
+
+
+    }
+
+
+  </script>
+
+
+</body>
+</html>
+

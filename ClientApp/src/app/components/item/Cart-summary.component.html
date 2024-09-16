@@ -1,0 +1,8 @@
+<div class="alert alert-success fs-4">
+  <div style="text-align:center" *ngIf="cartService.cartItemCount>0">
+    There are {{cartService.cartItemCount}} item in your cart.
+    Total {{cartService.total}} $ 
+    <div ><span class="mb-3"> See your <a routerLink="/basket"> Cart  </a> </span> </div>  
+  </div>
+ <h3 style="text-align:center" *ngIf="cartService.cartItemCount==0"> There is no item in your cart</h3>
+</div>
